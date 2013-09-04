@@ -1,0 +1,45 @@
+﻿<Window x:Class="DynamicSplashScreen.AnimatedSplashScreenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SplashScreenWindow" Height="400" Width="400"
+        ShowInTaskbar = "False"
+        ResizeMode = "NoResize"
+        WindowStartupLocation = "CenterScreen"
+        WindowState = "Normal"
+        WindowStyle = "None">
+    <Grid>
+        <StackPanel HorizontalAlignment="Left" Height="400" VerticalAlignment="Top" Width="400">
+            <Image Source="pack://application:,,,/Images/IMG_1532.JPG"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Name="UpdateMessageTextBox" FontSize="16" Text="Loading" Effect="{x:Null}"  />
+                <TextBlock Name="EllipsesTextBlock" FontSize="16" Margin="0,0,0,0" Effect="{x:Null}" Width="20" >
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Text" Value="...."/>
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="TextBlock.Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Text">
+                                            <ObjectAnimationUsingKeyFrames Duration="00:00:1"
+                                                                RepeatBehavior="Forever">
+                                                <DiscreteObjectKeyFrame KeyTime="00:00:00"
+                                                            Value=""/>
+                                                <DiscreteObjectKeyFrame KeyTime="00:00:0.25"
+                                                            Value="."/>
+                                                <DiscreteObjectKeyFrame KeyTime="00:00:0.5"
+                                                            Value=".."/>
+                                                <DiscreteObjectKeyFrame KeyTime="00:00:0.75"
+                                                            Value="..."/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>
